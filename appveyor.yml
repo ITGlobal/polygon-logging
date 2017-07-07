@@ -1,7 +1,6 @@
-version: 1.0.{build}-{branch}
+version: 1.0.{build}
 pull_requests:
   do_not_increment_build_number: true
-configuration: Release
 build:
   verbosity: minimal
 cache: 
@@ -19,9 +18,3 @@ deploy:
   on:
     branch: master
   skip_symbols: false
-notifications:
-- provider: Slack
-  incoming_webhook: a7TE9Xu2mdPphDJSk5r/BQn+2npcVDiJIrzR8tYselHQvWmSleO8NGdGVaLAxVw6yhVyzQh2IT9rEDXYssazCgdoW96THTdfjK2X2e0iLzk=
-  on_build_success: true
-  on_build_failure: true
-  on_build_status_changed: false
