@@ -1,0 +1,47 @@
+﻿<#
+	const int MAX_FORMAT_ARGS = 24;
+#>
+<#+
+    /// <summary>
+    ///     Описание уровней логирования
+    /// </summary>
+    public sealed class T4LogLevel
+    {
+		private const int ALLOW_EXCEPTION            = 0x01;
+		private const int ALLOW_NO_EXCEPTION         = 0x02;
+		private const int ALLOW_STRING_INTERPOLATION = 0x04;
+
+        private static readonly T4LogLevel[] _Levels =
+        {
+            new T4LogLevel("Trace", "Сообщение трассировки",    ALLOW_NO_EXCEPTION), 
+            new T4LogLevel("Debug", "Отладочное сообщение",     ALLOW_NO_EXCEPTION|ALLOW_STRING_INTERPOLATION), 
+            new T4LogLevel("Info",  "Информационное сообщение", ALLOW_NO_EXCEPTION|ALLOW_STRING_INTERPOLATION), 
+            new T4LogLevel("Warn",  "Предупреждение",           ALLOW_NO_EXCEPTION|ALLOW_EXCEPTION|ALLOW_STRING_INTERPOLATION), 
+            new T4LogLevel("Error", "Некритическая ошибка",     ALLOW_NO_EXCEPTION|ALLOW_EXCEPTION|ALLOW_STRING_INTERPOLATION), 
+            new T4LogLevel("Fatal", "Критическая ошибка",       ALLOW_EXCEPTION|ALLOW_STRING_INTERPOLATION), 
+        };
+        private readonly string name;
+        private readonly string description;
+		private readonly int flags;
+
+        private T4LogLevel(string name, string description, int flags)
+        {
+            this.name        = name;
+            this.description = description;
+            this.flags       = flags;
+        }
+
+        public string Name                     { get { return name; } }
+        public string Description              { get { return description; } }
+		public bool   AllowException           { get { return (flags & ALLOW_EXCEPTION) == ALLOW_EXCEPTION; } }
+		public bool   AllowNoException         { get { return (flags & ALLOW_NO_EXCEPTION) == ALLOW_NO_EXCEPTION; } }
+		public bool   AllowStringInterpolation { get { return (flags & ALLOW_STRING_INTERPOLATION) == ALLOW_STRING_INTERPOLATION; } }
+
+        public static T4LogLevel[] Levels      { get { return _Levels; } }
+
+        public override string ToString()
+        {
+            return name;
+        }
+    }
+#>

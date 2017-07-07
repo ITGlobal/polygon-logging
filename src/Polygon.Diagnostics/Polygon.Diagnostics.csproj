@@ -1,0 +1,104 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFrameworks>net45;net46;netstandard1.6</TargetFrameworks>
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
+    <PackageId>ITGlobal.Polygon.Diagnostics</PackageId>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net45|AnyCPU'">
+    <NoWarn>1701;1702;1705;1591;0472;CS1591;CS0472;</NoWarn>
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="JetBrains.Annotations" Version="10.4.0" />
+  </ItemGroup>
+  <ItemGroup Condition="'$(TargetFramework)'=='net40'">
+    <PackageReference Include="StringInterpolationBridge" Version="0.9.1" />
+  </ItemGroup>
+  <ItemGroup Condition="'$(TargetFramework)'=='net45'">
+    <PackageReference Include="StringInterpolationBridge" Version="0.9.1" />
+  </ItemGroup>
+  <ItemGroup Condition="'$(TargetFramework)'=='netstandard1.6'">
+    <PackageReference Include="System.Diagnostics.TraceSource" Version="4.3.0" />
+    <PackageReference Include="System.Runtime.Serialization.Formatters" Version="4.3.0" />
+    <PackageReference Include="System.Runtime.Serialization.Primitives" Version="4.3.0" />
+    <PackageReference Include="System.Threading.Thread" Version="4.3.0" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Update="DisabledLogPrinters.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>DisabledLogPrinters.cs</LastGenOutput>
+    </None>
+    <None Update="FormattingHelper.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>FormattingHelper.Generated.cs</LastGenOutput>
+    </None>
+    <None Update="ILog.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>ILog.cs</LastGenOutput>
+    </None>
+    <None Update="LoggerImplementation.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>LoggerImplementation.cs</LastGenOutput>
+    </None>
+    <None Update="LogLevel.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>LogLevel.cs</LastGenOutput>
+    </None>
+    <None Update="LogMessage.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>LogMessage.Generated.cs</LastGenOutput>
+    </None>
+    <None Update="LogPrinters.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>LogPrinters.cs</LastGenOutput>
+    </None>
+    <None Update="ObjectLogFormatter.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>ObjectLogFormatter.Generated.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Update="DisabledLogPrinters.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>DisabledLogPrinters.tt</DependentUpon>
+    </Compile>
+    <Compile Update="FormattingHelper.Generated.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>FormattingHelper.tt</DependentUpon>
+    </Compile>
+    <Compile Update="ILog.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>ILog.tt</DependentUpon>
+    </Compile>
+    <Compile Update="LoggerImplementation.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>LoggerImplementation.tt</DependentUpon>
+    </Compile>
+    <Compile Update="LogLevel.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>LogLevel.tt</DependentUpon>
+    </Compile>
+    <Compile Update="LogMessage.Generated.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>LogMessage.tt</DependentUpon>
+    </Compile>
+    <Compile Update="LogPrinters.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>LogPrinters.tt</DependentUpon>
+    </Compile>
+    <Compile Update="ObjectLogFormatter.Generated.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>ObjectLogFormatter.tt</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349b6-6b84-4df5-91f0-309beebad82d}" />
+  </ItemGroup>
+</Project>
